@@ -1,7 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "dna.h"
+
+void load_dna(char *filename, char *buffer) {
+    FILE *fptr = fopen(filename, "r");
+    if (fptr == NULL) {
+        printf("Not able to open the file.");
+    }
+
+    fgets(buffer, 1000, fptr);
+    buffer[strcspn(buffer, "\n")] = '\0';
+    fclose(fptr);
+}
 
 basecount_t calc_base_freqs(char *dnastring) {
     basecount_t bases = {0};
@@ -16,11 +28,11 @@ basecount_t calc_base_freqs(char *dnastring) {
             case ('C'):
                 bases.c++;
                 break;
-            case ('T'):
-                bases.t++;
-                break;
             case ('G'):
                 bases.g++;
+                break;
+            case ('T'):
+                bases.t++;
                 break;
             default:
                 printf("Encountered invalid base %c\n", *current_base);
