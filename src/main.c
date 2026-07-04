@@ -1,11 +1,12 @@
 #include <stdio.h>
 
 #include "dna.h"
+// #include "rna.h"
 
-int main(int argc, char *argv[]) {
+void dna(int argc, char *argv[]) {
     if (argc != 2) {
         printf("Incorrect number of arguments.\n");
-        return 1;
+        return;
     }
 
     char dnastring[MAX_DNA_LEN];
@@ -13,6 +14,9 @@ int main(int argc, char *argv[]) {
 
     basecount_t bases = calc_base_freqs(dnastring);
     printf("%d %d %d %d\n", bases.a, bases.c, bases.g, bases.t);
+}
 
+int main(int argc, char *argv[]) {
+    dna(argc, argv);
     return 0;
 }
