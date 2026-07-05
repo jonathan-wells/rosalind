@@ -2,6 +2,7 @@
 
 #include "dna.h"
 #include "rna.h"
+#include "revc.h"
 
 void dna(int argc, char *argv[]) {
     if (argc != 2) {
@@ -29,7 +30,20 @@ void rna(int argc, char *argv[]) {
     printf("%s\n", rna_string);
 }
 
+void revc(int argc, char *argv[]) {
+    if (argc != 2) {
+        printf("Incorrect number of arguments.\n");
+        return;
+    }
+
+    char dnastring[MAX_DNA_LEN];
+    load_dna(argv[1], dnastring);
+
+    char *reverse_complement_string = reverse_complement(dnastring);
+    printf("%s\n", reverse_complement_string);
+}
+
 int main(int argc, char *argv[]) {
-    rna(argc, argv);
+    revc(argc, argv);
     return 0;
 }
