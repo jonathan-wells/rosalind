@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "rna.h"
+
+char *transcribe(const char *dna_string) {
+    size_t seqlen = strlen(dna_string);
+    char *rna_string = malloc(seqlen + 1);
+
+    if (rna_string == NULL) {
+        perror("Failed to malloc rna_string");
+        exit(1);
+    }
+
+    for (size_t i = 0; i < seqlen; i++) {
+        char base = dna_string[i];
+        if (base == 'A' || base == 'C' || base == 'G') {
+            rna_string[i] = base;
+        } else if (base == 'T') {
+            rna_string[i] = 'U';
+        } else {
+            fprintf(stderr, "Encountered invalid base %c\n", base);
+            exit(1);
+        }
+    }
+
+    rna_string[seqlen] = '\0';
+    return rna_string;
+}
