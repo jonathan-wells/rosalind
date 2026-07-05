@@ -4,21 +4,6 @@
 
 #include "dna.h"
 
-void load_dna(const char *filename, char *buffer) {
-    FILE *fptr = fopen(filename, "r");
-    if (fptr == NULL) {
-        printf("Not able to open the file.\n");
-        exit(1);
-    }
-
-    if (fgets(buffer, MAX_DNA_LEN, fptr) == NULL) {
-        printf("File is empty or unreadable.\n");
-        exit(1);
-    }
-    buffer[strcspn(buffer, "\n")] = '\0';
-    fclose(fptr);
-}
-
 basecount_t calc_base_freqs(char *dnastring) {
     basecount_t bases = {0};
 

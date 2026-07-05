@@ -1,49 +1,57 @@
+#include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "dna.h"
 #include "rna.h"
 #include "revc.h"
+// #include "gc.h"
 
-void dna(int argc, char *argv[]) {
-    if (argc != 2) {
-        printf("Incorrect number of arguments.\n");
-        return;
+void read_single_line_input(const char *filename, char *buffer) {
+    FILE *fptr = fopen(filename, "r");
+    if (fptr == NULL) {
+        fprintf(stderr, "Not able to open file %s.\n", filename);
+        exit(1);
     }
 
-    char dnastring[MAX_DNA_LEN];
-    load_dna(argv[1], dnastring);
+    if (fgets(buffer, MAX_DNA_LEN, fptr) == NULL) {
+        fprintf(stderr, "File is empty or unreadable.\n");
+        exit(1);
+    }
+    buffer[strcspn(buffer, "\n")] = '\0';
+    fclose(fptr);
+}
 
-    basecount_t bases = calc_base_freqs(dnastring);
+void dna(char *filename) {
+    char dna_string[MAX_DNA_LEN];
+    read_single_line_input(filename, dna_string);
+
+    basecount_t bases = calc_base_freqs(dna_string);
     printf("%d %d %d %d\n", bases.a, bases.c, bases.g, bases.t);
 }
 
-void rna(int argc, char *argv[]) {
-    if (argc != 2) {
-        printf("Incorrect number of arguments.\n");
-        return;
-    }
+void rna(char *filename) {
+    char dna_string[MAX_DNA_LEN];
+    read_single_line_input(filename, dna_string);
 
-    char dnastring[MAX_DNA_LEN];
-    load_dna(argv[1], dnastring);
-
-    char *rna_string = transcribe(dnastring);
+    char *rna_string = transcribe(dna_string);
     printf("%s\n", rna_string);
 }
 
-void revc(int argc, char *argv[]) {
-    if (argc != 2) {
-        printf("Incorrect number of arguments.\n");
-        return;
-    }
+void revc(char *filename) {
+    char dna_string[MAX_DNA_LEN];
+    read_single_line_input(filename, dna_string);
 
-    char dnastring[MAX_DNA_LEN];
-    load_dna(argv[1], dnastring);
-
-    char *reverse_complement_string = reverse_complement(dnastring);
+    char *reverse_complement_string = reverse_complement(dna_string);
     printf("%s\n", reverse_complement_string);
 }
 
+
 int main(int argc, char *argv[]) {
-    revc(argc, argv);
+    if (argc != 2) {
+        fprintf(stderr, "Incorrect number of arguments: 2 != %d.\n", argc);
+        return 1;
+    }
+    revc(argv[1]);
     return 0;
 }
