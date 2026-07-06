@@ -1,6 +1,5 @@
 #pragma once
 
-#define MAX_DNA_LEN 1000
 
 void load_dna(const char *filename, char *buffer);
 

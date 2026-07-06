@@ -5,5 +5,5 @@ typedef struct FastaSeq {
     char *sequence;
 } fasta_t;
 
-void read_single_line_input(const char *filename, char *buffer);
-void read_fasta(const char *filename, char *buffer);
+char *read_single_line_input(const char *filename);
+char **read_fasta(const char *filename);
