@@ -2,25 +2,11 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "file_utils.h"
 #include "dna.h"
 #include "rna.h"
 #include "revc.h"
-// #include "gc.h"
-
-void read_single_line_input(const char *filename, char *buffer) {
-    FILE *fptr = fopen(filename, "r");
-    if (fptr == NULL) {
-        fprintf(stderr, "Not able to open file %s.\n", filename);
-        exit(1);
-    }
-
-    if (fgets(buffer, MAX_DNA_LEN, fptr) == NULL) {
-        fprintf(stderr, "File is empty or unreadable.\n");
-        exit(1);
-    }
-    buffer[strcspn(buffer, "\n")] = '\0';
-    fclose(fptr);
-}
+#include "gc.h"
 
 void dna(char *filename) {
     char dna_string[MAX_DNA_LEN];
@@ -45,7 +31,6 @@ void revc(char *filename) {
     char *reverse_complement_string = reverse_complement(dna_string);
     printf("%s\n", reverse_complement_string);
 }
-
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
