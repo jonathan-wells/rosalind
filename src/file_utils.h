@@ -1,9 +1,10 @@
 #pragma once
 
-typedef struct FastaSeq {
-    char *header;
-    char *sequence;
+typedef struct FastaSeqs {
+    unsigned int nseqs;
+    char **headers;
+    char **sequences;
 } fasta_t;
 
 char *read_single_line_input(const char *filename);
-char **read_fasta(const char *filename);
+fasta_t *read_fasta(const char *filename);
