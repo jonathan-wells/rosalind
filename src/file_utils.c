@@ -32,8 +32,11 @@ fasta_t *read_fasta(const char *filename) {
 
     while ((line_len = getline(&line, &line_capacity, fptr)) != -1) {
         if (line[0] == '>') {
-            // Think I have to take into account possiblity of long headers
-            line[line_len - 1] = '\0';  // To chomp newline
+            // Chomp newlines and header arrow.
+            line[line_len - 1] = '\0';
+            for (size_t i = 1; i < line_len; i++) {
+                line[i - 1] = line[i];
+            }
             fasta_seqs->headers[fasta_seqs->nseqs] = strdup(line);
             (fasta_seqs->nseqs)++;
 
@@ -41,9 +44,10 @@ fasta_t *read_fasta(const char *filename) {
                 nseqs_cap *= 2;
                 char **hdr_tmp = realloc(fasta_seqs->headers, nseqs_cap * sizeof(char *));
                 if (!hdr_tmp) { perror("realloc"); exit(1); }
+                fasta_seqs->headers = hdr_tmp;
+
                 char **seq_tmp = realloc(fasta_seqs->sequences, nseqs_cap * sizeof(char *));
                 if (!seq_tmp) { perror("realloc"); exit(1); }
-                fasta_seqs->headers = hdr_tmp;
                 fasta_seqs->sequences = seq_tmp;
             }
 
