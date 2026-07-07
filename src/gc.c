@@ -14,5 +14,15 @@ float calc_gc_content(char *sequence) {
         curr_base++;
     }
 
-    return (float)gc_count / (float)seqlen;
+    return 100.0 * (float)gc_count / (float)seqlen;
+}
+
+size_t gc_argmax(fasta_t *fasta_sequences) {
+    float curr_max_gc = 0.0;
+    size_t curr_max_i = 0;
+    for (size_t i = 0; i < fasta_sequences->nseqs; i++) {
+        float gc_freq = calc_gc_content(fasta_sequences->sequences[i]);
+        if (gc_freq > curr_max_gc) { curr_max_gc = gc_freq; curr_max_i = i; }
+    }
+    return curr_max_i;
 }
