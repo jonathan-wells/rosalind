@@ -1,7 +1,9 @@
+#include <stdlib.h>
+
 #pragma once
 
 typedef struct FastaSeqs {
-    unsigned int nseqs;
+    size_t nseqs;
     char **headers;
     char **sequences;
 } fasta_t;
