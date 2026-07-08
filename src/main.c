@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 #include "dna.h"
 #include "file_utils.h"
@@ -6,6 +7,7 @@
 #include "revc.h"
 #include "rna.h"
 #include "subs.h"
+#include "grph.h"
 
 void dna(const char *filename) {
     char *dna_string = read_single_line_input(filename);
@@ -42,11 +44,23 @@ void subs(const char *filename) {
     printf("\n");
 }
 
+void grph(const char *filename) {
+    fasta_t *fasta_seqs = read_fasta(filename);
+    size_t k = 3;
+    size_t **pairs = calc_overlap_graph(fasta_seqs, k);
+    size_t npairs = *pairs[0];
+    for (size_t i = 1; i <= npairs; i++) {
+        char * hdr1 = fasta_seqs->headers[pairs[i][0]];
+        char * hdr2 = fasta_seqs->headers[pairs[i][1]];
+        printf("%s %s\n", hdr1, hdr2);
+    }
+}
+
 int main(int argc, char *argv[]) {
     if (argc != 2) {
         fprintf(stderr, "Incorrect number of arguments: 2 != %d.\n", argc);
         return 1;
     }
-    subs(argv[1]);
+    grph(argv[1]);
     return 0;
 }
