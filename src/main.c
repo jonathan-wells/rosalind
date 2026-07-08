@@ -47,11 +47,10 @@ void subs(const char *filename) {
 void grph(const char *filename) {
     fasta_t *fasta_seqs = read_fasta(filename);
     size_t k = 3;
-    size_t **pairs = calc_overlap_graph(fasta_seqs, k);
-    size_t npairs = *pairs[0];
-    for (size_t i = 1; i <= npairs; i++) {
-        char * hdr1 = fasta_seqs->headers[pairs[i][0]];
-        char * hdr2 = fasta_seqs->headers[pairs[i][1]];
+    overlap_graph_t *ograph = calc_overlap_graph(fasta_seqs, k);
+    for (size_t i = 0; i < ograph->nedges; i++) {
+        char *hdr1 = ograph->edges[i][0];
+        char *hdr2 = ograph->edges[i][1];
         printf("%s %s\n", hdr1, hdr2);
     }
 }
