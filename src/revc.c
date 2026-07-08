@@ -1,5 +1,5 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 char *complement(const char *dna_string) {
@@ -14,21 +14,21 @@ char *complement(const char *dna_string) {
     for (size_t i = 0; i < seqlen; i++) {
         const char base = dna_string[i];
         switch (base) {
-            case 'A':
-                complement_string[i] = 'T';
-                break;
-            case 'C':
-                complement_string[i] = 'G';
-                break;
-            case 'G':
-                complement_string[i] = 'C';
-                break;
-            case 'T':
-                complement_string[i] = 'A';
-                break;
-            default:
-                fprintf(stderr, "Invalid base encountered: %c\n", base);
-                exit(1);
+        case 'A':
+            complement_string[i] = 'T';
+            break;
+        case 'C':
+            complement_string[i] = 'G';
+            break;
+        case 'G':
+            complement_string[i] = 'C';
+            break;
+        case 'T':
+            complement_string[i] = 'A';
+            break;
+        default:
+            fprintf(stderr, "Invalid base encountered: %c\n", base);
+            exit(1);
         }
     }
 
@@ -47,8 +47,8 @@ char *reverse(const char *dna_string) {
 
     int j = seqlen - 1;
     for (size_t i = 0; i < seqlen; i++) {
-       reverse_string[i] = dna_string[j];
-       j--;
+        reverse_string[i] = dna_string[j];
+        j--;
     }
 
     reverse_string[seqlen] = '\0';

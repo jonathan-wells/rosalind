@@ -1,6 +1,6 @@
+#include "gc.h"
 #include <stdio.h>
 #include <string.h>
-#include "gc.h"
 
 float calc_gc_content(char *sequence) {
     unsigned int seqlen = strlen(sequence);
@@ -22,7 +22,10 @@ size_t gc_argmax(fasta_t *fasta_sequences) {
     size_t curr_max_i = 0;
     for (size_t i = 0; i < fasta_sequences->nseqs; i++) {
         float gc_freq = calc_gc_content(fasta_sequences->sequences[i]);
-        if (gc_freq > curr_max_gc) { curr_max_gc = gc_freq; curr_max_i = i; }
+        if (gc_freq > curr_max_gc) {
+            curr_max_gc = gc_freq;
+            curr_max_i = i;
+        }
     }
     return curr_max_i;
 }

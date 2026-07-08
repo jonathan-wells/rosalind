@@ -8,5 +8,6 @@ typedef struct FastaSeqs {
     char **sequences;
 } fasta_t;
 
-char *read_single_line_input(const char *filename);
 fasta_t *read_fasta(const char *filename);
+char *read_single_line_input(const char *filename);
+char **read_multi_line_input(const char *filename);

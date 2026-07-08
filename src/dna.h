@@ -1,6 +1,5 @@
 #pragma once
 
-
 void load_dna(const char *filename, char *buffer);
 
 typedef struct BaseCount {
