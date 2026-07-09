@@ -4,6 +4,7 @@
 #include "dna.h"
 #include "file_utils.h"
 #include "gc.h"
+#include "iprb.h"
 #include "revc.h"
 #include "rna.h"
 #include "subs.h"
@@ -55,11 +56,19 @@ void grph(const char *filename) {
     }
 }
 
+void iprb(const char *filename) {
+    int k; int m; int n;
+    char* input_str = read_single_line_input(filename);
+    sscanf(input_str, "%d %d %d", &k, &m, &n);
+    double p_dom_phenotype = prob_dominant_phenotype(k, m, n);
+    printf("%f\n", p_dom_phenotype);
+}
+
 int main(int argc, char *argv[]) {
     if (argc != 2) {
         fprintf(stderr, "Incorrect number of arguments: 2 != %d.\n", argc);
         return 1;
     }
-    grph(argv[1]);
+    iprb(argv[1]);
     return 0;
 }
