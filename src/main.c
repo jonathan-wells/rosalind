@@ -69,7 +69,7 @@ void fib(const char *filename) {
     size_t n; size_t k;
     char* input_str = read_single_line_input(filename);
     sscanf(input_str, "%ld %ld", &n, &k);
-    size_t fib = fibonacci_rabbits_recursive(n, k);
+    size_t fib = fibonacci_rabbits_dp(n, k);
     printf("%ld\n", fib);
 }
 
