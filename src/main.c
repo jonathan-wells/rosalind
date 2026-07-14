@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "dna.h"
 #include "file_utils.h"
+#include "dna.h"
+#include "rna.h"
 #include "gc.h"
 #include "iprb.h"
 #include "revc.h"
-#include "rna.h"
 #include "subs.h"
 #include "grph.h"
+#include "fib.h"
 
 void dna(const char *filename) {
     char *dna_string = read_single_line_input(filename);
@@ -64,11 +65,19 @@ void iprb(const char *filename) {
     printf("%f\n", p_dom_phenotype);
 }
 
+void fib(const char *filename) {
+    size_t n; size_t k;
+    char* input_str = read_single_line_input(filename);
+    sscanf(input_str, "%ld %ld", &n, &k);
+    size_t fib = fibonacci_rabbits_recursive(n, k);
+    printf("%ld\n", fib);
+}
+
 int main(int argc, char *argv[]) {
     if (argc != 2) {
         fprintf(stderr, "Incorrect number of arguments: 2 != %d.\n", argc);
         return 1;
     }
-    iprb(argv[1]);
+    fib(argv[1]);
     return 0;
 }
