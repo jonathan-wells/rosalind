@@ -3,8 +3,8 @@
 #include <stdbool.h>
 #include <string.h>
 
-#include "file_utils.h"
-#include "grph.h"
+#include "../include/file_utils.h"
+#include "../include/grph.h"
 
 /**
  * @brief Checks for length k overlap between suffix of seq1 and prefix of seq2.

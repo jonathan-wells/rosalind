@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "dna.h"
-#include "rna.h"
-#include "gc.h"
-#include "iprb.h"
-#include "revc.h"
-#include "subs.h"
-#include "grph.h"
-#include "fib.h"
+#include "../include/dna.h"
+#include "../include/rna.h"
+#include "../include/gc.h"
+#include "../include/iprb.h"
+#include "../include/revc.h"
+#include "../include/subs.h"
+#include "../include/grph.h"
+#include "../include/fib.h"
 
 
 typedef struct {

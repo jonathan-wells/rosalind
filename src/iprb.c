@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-#include "iprb.h"
-#include "file_utils.h"
+#include "../include/iprb.h"
+#include "../include/file_utils.h"
 
 float prob_dominant_phenotype(int k, int m, int n) {
     m = (float)m;

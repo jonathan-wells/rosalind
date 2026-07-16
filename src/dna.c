@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "dna.h"
-#include "file_utils.h"
+#include "../include/dna.h"
+#include "../include/file_utils.h"
 
 basecount_t calc_base_freqs(char *dnastring) {
     basecount_t bases = {0};

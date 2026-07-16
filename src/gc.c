@@ -1,6 +1,7 @@
-#include "gc.h"
 #include <stdio.h>
 #include <string.h>
+
+#include "../include/gc.h"
 
 float calc_gc_content(char *sequence) {
     unsigned int seqlen = strlen(sequence);

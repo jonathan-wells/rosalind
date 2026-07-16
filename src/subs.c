@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "subs.h"
-#include "file_utils.h"
+#include "../include/subs.h"
+#include "../include/file_utils.h"
 
 size_t *find_substrings(const char *substring, const char *string) {
     size_t array_size = 1;
