@@ -3,3 +3,5 @@
 #pragma once
 
 size_t *find_substrings(const char *substring, const char *string);
+
+void subs(const char *filename);

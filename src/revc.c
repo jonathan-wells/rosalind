@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "revc.h"
+#include "file_utils.h"
+
 char *complement(const char *dna_string) {
     int seqlen = strlen(dna_string);
     char *complement_string = malloc(seqlen + 1);
@@ -60,4 +63,10 @@ char *reverse_complement(const char *dna_string) {
     char *reverse_complement_string = reverse(complement_string);
     free(complement_string);
     return reverse_complement_string;
+}
+
+void revc(const char *filename) {
+    char *dna_string = read_single_line_input(filename);
+    char *reverse_complement_string = reverse_complement(dna_string);
+    printf("%s\n", reverse_complement_string);
 }

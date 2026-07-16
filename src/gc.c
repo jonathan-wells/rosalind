@@ -29,3 +29,10 @@ size_t gc_argmax(fasta_t *fasta_sequences) {
     }
     return curr_max_i;
 }
+
+void gc(const char *filename) {
+    fasta_t *fasta_seqs = read_fasta(filename);
+    size_t top_gc_idx = gc_argmax(fasta_seqs);
+    float gc_content = calc_gc_content(fasta_seqs->sequences[top_gc_idx]);
+    printf("%s\n%f\n", fasta_seqs->headers[top_gc_idx], gc_content);
+}

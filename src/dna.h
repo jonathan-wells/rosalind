@@ -10,3 +10,5 @@ typedef struct BaseCount {
 } basecount_t;
 
 basecount_t calc_base_freqs(char *dnastring);
+
+void dna(const char *filename);

@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "dna.h"
+#include "file_utils.h"
 
 basecount_t calc_base_freqs(char *dnastring) {
     basecount_t bases = {0};
@@ -31,4 +32,10 @@ basecount_t calc_base_freqs(char *dnastring) {
     }
 
     return bases;
+}
+
+void dna(const char *filename) {
+    char *dna_string = read_single_line_input(filename);
+    basecount_t bases = calc_base_freqs(dna_string);
+    printf("%d %d %d %d\n", bases.a, bases.c, bases.g, bases.t);
 }

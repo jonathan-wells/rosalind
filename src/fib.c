@@ -1,6 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "fib.h"
+#include "file_utils.h"
+
 size_t fibonacci_rabbits_recursive(size_t n, size_t k) {
     if (n <= 0) {
         return 0;
@@ -27,4 +30,12 @@ size_t fibonacci_rabbits_dp(size_t n, size_t k) {
         memo[1] = new;
     }
     return memo[1];
+}
+
+void fib(const char *filename) {
+    size_t n; size_t k;
+    char* input_str = read_single_line_input(filename);
+    sscanf(input_str, "%ld %ld", &n, &k);
+    size_t fib = fibonacci_rabbits_dp(n, k);
+    printf("%ld\n", fib);
 }

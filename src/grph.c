@@ -68,3 +68,14 @@ overlap_graph_t *calc_overlap_graph(fasta_t *fasta_seqs, unsigned int k) {
     }
     return ograph;
 }
+
+void grph(const char *filename) {
+    fasta_t *fasta_seqs = read_fasta(filename);
+    size_t k = 3;
+    overlap_graph_t *ograph = calc_overlap_graph(fasta_seqs, k);
+    for (size_t i = 0; i < ograph->nedges; i++) {
+        char *hdr1 = ograph->edges[i][0];
+        char *hdr2 = ograph->edges[i][1];
+        printf("%s %s\n", hdr1, hdr2);
+    }
+}

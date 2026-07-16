@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "rna.h"
+#include "file_utils.h"
 
 char *transcribe(const char *dna_string) {
     size_t seqlen = strlen(dna_string);
@@ -27,4 +28,10 @@ char *transcribe(const char *dna_string) {
 
     rna_string[seqlen] = '\0';
     return rna_string;
+}
+
+void rna(const char *filename) {
+    char *dna_string = read_single_line_input(filename);
+    char *rna_string = transcribe(dna_string);
+    printf("%s\n", rna_string);
 }

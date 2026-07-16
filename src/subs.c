@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "subs.h"
+#include "file_utils.h"
 
 size_t *find_substrings(const char *substring, const char *string) {
     size_t array_size = 1;
@@ -43,4 +44,14 @@ size_t *find_substrings(const char *substring, const char *string) {
     array = tmp_array;
 
     return array;
+}
+
+void subs(const char *filename) {
+    char **seqs = read_multi_line_input(filename);
+    size_t *matches = find_substrings(seqs[1], seqs[0]);
+    size_t nmatches = matches[0];
+    for (size_t i = 1; i <= nmatches; i++) {
+        printf("%ld ", matches[i]);
+    }
+    printf("\n");
 }
