@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../include/rna.h"
 #include "../include/file_utils.h"
+#include "../include/rna.h"
 
 char *transcribe(const char *dna_string) {
     size_t seqlen = strlen(dna_string);

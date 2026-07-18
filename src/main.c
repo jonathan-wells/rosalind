@@ -2,14 +2,14 @@
 #include <string.h>
 
 #include "../include/dna.h"
-#include "../include/rna.h"
-#include "../include/gc.h"
-#include "../include/iprb.h"
-#include "../include/revc.h"
-#include "../include/subs.h"
-#include "../include/grph.h"
 #include "../include/fib.h"
-
+#include "../include/gc.h"
+#include "../include/grph.h"
+#include "../include/iprb.h"
+#include "../include/prot.h"
+#include "../include/revc.h"
+#include "../include/rna.h"
+#include "../include/subs.h"
 
 typedef struct {
     const char *puzzle;
@@ -17,15 +17,9 @@ typedef struct {
 } command_t;
 
 static const command_t COMMAND[] = {
-    { "dna", dna },
-    { "rna", rna },
-    { "revc", revc },
-    { "gc", gc },
-    { "subs", subs },
-    { "grphs", grph },
-    { "iprb", iprb },
-    { "fib", fib }
-};
+    {"dna", dna},    {"rna", rna},   {"revc", revc},
+    {"gc", gc},      {"prot", prot}, {"subs", subs},
+    {"grphs", grph}, {"iprb", iprb}, {"fib", fib}};
 
 int main(int argc, char *argv[]) {
     if (argc != 3) {

@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../include/revc.h"
 #include "../include/file_utils.h"
+#include "../include/revc.h"
 
 char *complement(const char *dna_string) {
     int seqlen = strlen(dna_string);

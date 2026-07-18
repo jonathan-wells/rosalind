@@ -1,6 +1,6 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "../include/file_utils.h"
@@ -17,7 +17,9 @@
  * @param k The length of suffixes and prefixes.
  */
 bool has_overlap(const char *seq1, const char *seq2, unsigned int k) {
-    if (strcmp(seq1, seq2) == 0) { return 0; }
+    if (strcmp(seq1, seq2) == 0) {
+        return 0;
+    }
     size_t m = strlen(seq1);
     const char *sfx = seq1 + m - k;
     if (strncmp(sfx, seq2, k) == 0) {
@@ -29,37 +31,45 @@ bool has_overlap(const char *seq1, const char *seq2, unsigned int k) {
 overlap_graph_t *calc_overlap_graph(fasta_t *fasta_seqs, unsigned int k) {
     size_t array_size = 1;
     char ***array = malloc(array_size * sizeof(size_t));
-    if (!array) { perror("malloc"); exit(1); }
+    if (!array) {
+        perror("malloc");
+        exit(1);
+    }
 
     overlap_graph_t *ograph = malloc(sizeof(overlap_graph_t));
-    *ograph = (overlap_graph_t) {
-        .nedges = 0,
-        .edges = array
-    };
-    if (!ograph) { perror("malloc"); exit(1); }
-
+    *ograph = (overlap_graph_t){.nedges = 0, .edges = array};
+    if (!ograph) {
+        perror("malloc");
+        exit(1);
+    }
 
     for (size_t i = 0; i < fasta_seqs->nseqs; i++) {
         for (size_t j = 0; j < fasta_seqs->nseqs; j++) {
-            if (i == j) { continue; }
-            bool overlap = has_overlap(
-                fasta_seqs->sequences[i],
-                fasta_seqs->sequences[j],
-                k
-            );
+            if (i == j) {
+                continue;
+            }
+            bool overlap = has_overlap(fasta_seqs->sequences[i],
+                                       fasta_seqs->sequences[j], k);
             if (!overlap) {
                 continue;
             }
 
             if (ograph->nedges == array_size) {
                 array_size *= 2;
-                char ***tmp_array = realloc(ograph->edges, array_size * sizeof(size_t));
-                if (!tmp_array) { perror("realloc"); exit(1); }
+                char ***tmp_array =
+                    realloc(ograph->edges, array_size * sizeof(size_t));
+                if (!tmp_array) {
+                    perror("realloc");
+                    exit(1);
+                }
                 ograph->edges = tmp_array;
             }
 
             char **edge = malloc(2 * sizeof(char *));
-            if (!edge) { perror("malloc"); exit(1); }
+            if (!edge) {
+                perror("malloc");
+                exit(1);
+            }
             edge[0] = fasta_seqs->headers[i];
             edge[1] = fasta_seqs->headers[j];
             ograph->edges[ograph->nedges] = edge;
