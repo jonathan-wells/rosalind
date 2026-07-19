@@ -18,7 +18,7 @@ Target of this project is to get to LING.
 - [x] GC
 - [x] PROT
 - [x] SUBS
-- [] HAMM
+- [x] HAMM
 - [x] GRPH
 - [] CONS
 - [] LCSM
