@@ -5,6 +5,7 @@
 #include "../include/fib.h"
 #include "../include/gc.h"
 #include "../include/grph.h"
+#include "../include/hamm.h"
 #include "../include/iprb.h"
 #include "../include/prot.h"
 #include "../include/revc.h"
@@ -17,9 +18,9 @@ typedef struct {
 } command_t;
 
 static const command_t COMMAND[] = {
-    {"dna", dna},    {"rna", rna},   {"revc", revc},
-    {"gc", gc},      {"prot", prot}, {"subs", subs},
-    {"grphs", grph}, {"iprb", iprb}, {"fib", fib}};
+    {"dna", dna},   {"rna", rna},   {"revc", revc}, {"gc", gc},
+    {"prot", prot}, {"subs", subs}, {"grph", grph}, {"iprb", iprb},
+    {"fib", fib},   {"hamm", hamm}};
 
 int main(int argc, char *argv[]) {
     if (argc != 3) {
