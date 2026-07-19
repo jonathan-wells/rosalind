@@ -20,13 +20,13 @@ Target of this project is to get to LING.
 - [x] SUBS
 - [x] HAMM
 - [x] GRPH
-- [] CONS
-- [] LCSM
-- [] TREE
-- [] PROB
-- [] INOD
-- [] KMP
-- [] TRIE
-- [] LREP
-- [] SUFF
-- [] LING
+- [ ] CONS
+- [ ] LCSM
+- [ ] TREE
+- [ ] PROB
+- [ ] INOD
+- [ ] KMP
+- [ ] TRIE
+- [ ] LREP
+- [ ] SUFF
+- [ ] LING
