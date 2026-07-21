@@ -8,6 +8,7 @@
 #include "../include/grph.h"
 #include "../include/hamm.h"
 #include "../include/iprb.h"
+#include "../include/lcsm.h"
 #include "../include/prot.h"
 #include "../include/revc.h"
 #include "../include/rna.h"
@@ -21,7 +22,8 @@ typedef struct {
 static const command_t COMMAND[] = {
     {"dna", dna},   {"rna", rna},   {"revc", revc}, {"iprb", iprb},
     {"fib", fib},   {"gc", gc},     {"prot", prot}, {"subs", subs},
-    {"hamm", hamm}, {"grph", grph}, {"cons", cons}};
+    {"hamm", hamm}, {"grph", grph}, {"cons", cons}, {"lcsm", lcsm}
+};
 
 int main(int argc, char *argv[]) {
     if (argc != 3) {

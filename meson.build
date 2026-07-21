@@ -17,6 +17,7 @@ sources = files(
   'src/grph.c',
   'src/hamm.c',
   'src/iprb.c',
+  'src/lcsm.c',
   'src/main.c',
   'src/prot.c',
   'src/revc.c',
