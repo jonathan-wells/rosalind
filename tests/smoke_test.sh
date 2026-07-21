@@ -1,5 +1,4 @@
-#!/bin/env bash
-
+#!/usr/bin/env bash
 declare -a puzzles=(
     dna
     rna
@@ -18,7 +17,7 @@ for p in ${puzzles[@]}; do
         diff \
         --ignore-blank-lines \
         --ignore-space-change \
-        <(bin/main $p "data/sample/${p}_in.txt") \
+        <(bin/rosalind $p "data/sample/${p}_in.txt") \
         "data/sample/${p}_out.txt"
     )
 
@@ -29,4 +28,4 @@ for p in ${puzzles[@]}; do
         exit 1
     fi
 done
-echo "All tests passed!"
+echo "Passed"
