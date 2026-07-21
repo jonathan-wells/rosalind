@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "../include/cons.h"
 #include "../include/dna.h"
 #include "../include/fib.h"
 #include "../include/gc.h"
@@ -18,9 +19,9 @@ typedef struct {
 } command_t;
 
 static const command_t COMMAND[] = {
-    {"dna", dna},   {"rna", rna},   {"revc", revc}, {"gc", gc},
-    {"prot", prot}, {"subs", subs}, {"grph", grph}, {"iprb", iprb},
-    {"fib", fib},   {"hamm", hamm}};
+    {"dna", dna},   {"rna", rna},   {"revc", revc}, {"iprb", iprb},
+    {"fib", fib},   {"gc", gc},     {"prot", prot}, {"subs", subs},
+    {"hamm", hamm}, {"grph", grph}, {"cons", cons}};
 
 int main(int argc, char *argv[]) {
     if (argc != 3) {

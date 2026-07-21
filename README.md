@@ -1,14 +1,16 @@
 # Rosalind puzzles
 
-
-## About
 [Rosalind](https://rosalind.info/) is an excellent resource for learning how to
-implement the low-level algorithms that form the foundations of computational
-biology - think of it as leetcode for comp bio. This repo is a work in progress,
-and I will stop once I reach the puzzle [Linguistic Complexity of a Genome](https://rosalind.info/ling).
-# Target
+implement algorithms on strings, trees, and graphs - you can think of it as
+LeetCode for computational biology. Like LeetCode, solving puzzles in Rosalind
+is neither necessary nor sufficient to become a successful computational
+biologist, but it will deepen your understanding and provide you with practical
+intuition into how some of the most important tools in genomics work under the
+hood.
 
-Target of this project is to get to LING.
+It is also a great way to learn a new language or brush off old skills. In this
+run, I am targeting the puzzle [Linguistic Complexity of a
+Genome](https://rosalind.info/ling), and solving puzzles in C.
 
 - [x] DNA
 - [x] RNA
@@ -20,7 +22,7 @@ Target of this project is to get to LING.
 - [x] SUBS
 - [x] HAMM
 - [x] GRPH
-- [ ] CONS
+- [x] CONS
 - [ ] LCSM
 - [ ] TREE
 - [ ] PROB
