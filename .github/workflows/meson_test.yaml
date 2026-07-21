@@ -1,0 +1,14 @@
+name: Smoke Test
+on: [push]
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - run: pip install meson ninja
+      - run: meson setup build --prefix $PWD
+      - run: meson install -C build
+      - run: meson test -C build smoke_test

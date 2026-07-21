@@ -1,4 +1,5 @@
 # Rosalind puzzles
+[![Smoke Test](https://github.com/jonathan-wells/rosalind/actions/workflows/meson_test.yaml/badge.svg)](https://github.com/jonathan-wells/rosalind/actions/workflows/meson_test.yaml)
 
 [Rosalind](https://rosalind.info/) is an excellent resource for learning how to
 implement algorithms on strings, trees, and graphs - you can think of it as
