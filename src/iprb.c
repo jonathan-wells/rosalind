@@ -18,5 +18,5 @@ void iprb(const char *filename) {
     char *input_str = read_single_line_input(filename);
     sscanf(input_str, "%d %d %d", &k, &m, &n);
     double p_dom_phenotype = prob_dominant_phenotype(k, m, n);
-    printf("%f\n", p_dom_phenotype);
+    printf("%.5g\n", p_dom_phenotype);
 }

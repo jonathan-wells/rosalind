@@ -29,4 +29,4 @@ for p in ${puzzles[@]}; do
         exit 1
     fi
 done
-echo "Passed"
+echo "All tests passed!"
