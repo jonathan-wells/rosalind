@@ -15,9 +15,14 @@ void cons(const char *filename) {
     for (size_t i = 0; i < 4; i++) {
         printf("%c: ", bases[i]);
         for (size_t j = 0; j < profile->seqlen; j++) {
-            printf("%ld ", profile->matrix[j][i]);
+            // This extra if-else strips trailing whitespace to ensure exact
+            // match to sample output.
+            if (j == profile->seqlen - 1) {
+                printf("%ld\n", profile->matrix[j][i]);
+            } else {
+                printf("%ld ", profile->matrix[j][i]);
+            }
         }
-        printf("\n");
     }
 }
 
