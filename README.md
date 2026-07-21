@@ -12,6 +12,20 @@ It is also a great way to learn a new language or brush off old skills. In this
 run, I am targeting the puzzle [Linguistic Complexity of a
 Genome](https://rosalind.info/ling), and solving puzzles in C.
 
+### Install
+```
+meson setup build --prefix=$PWD
+meson install -C build
+```
+
+### Usage
+```
+# <command> is a lower-case puzzle name, e.g. "dna".
+bin/rosalind <command> <input_data>
+```
+
+### Progress
+
 - [x] DNA
 - [x] RNA
 - [x] REVC
