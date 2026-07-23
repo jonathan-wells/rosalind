@@ -19,9 +19,9 @@ void cons(const char *filename) {
             // This extra if-else strips trailing whitespace to ensure exact
             // match to sample output.
             if (j == profile->seqlen - 1) {
-                printf("%ld\n", profile->matrix[j][i]);
+                printf("%zu\n", profile->matrix[j][i]);
             } else {
-                printf("%ld ", profile->matrix[j][i]);
+                printf("%zu ", profile->matrix[j][i]);
             }
         }
     }

@@ -51,7 +51,7 @@ void subs(const char *filename) {
     size_t *matches = find_substrings(seqs[1], seqs[0]);
     size_t nmatches = matches[0];
     for (size_t i = 1; i <= nmatches; i++) {
-        printf("%ld ", matches[i]);
+        printf("%zu ", matches[i]);
     }
     printf("\n");
 }
