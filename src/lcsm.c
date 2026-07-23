@@ -3,19 +3,22 @@
 #include <string.h>
 
 #include "../include/file_utils.h"
+#include "../include/utils.h"
 #include "../include/lcsm.h"
 #include "../include/revc.h"
 
-/* Read two FASTA sequences and print their longest common substring. */
-void lcsm(const char *filename) {
+/* Read two FASTA sequences and print their longest common substring.
+ * Including this because I misread the problem and spent 30 mins solving the
+ * problem for a pair of sequences, rather than a set of k seqs. */
+void lcsm_pair(const char *filename) {
     fasta_t *seqs = read_fasta(filename);
-    size_t **scores = calc_lcs(seqs->sequences[0], seqs->sequences[1]);
-    char *lcs = traceback(seqs->sequences[0], seqs->sequences[1], scores);
+    size_t **scores = calc_lcs_pair(seqs->sequences[0], seqs->sequences[1]);
+    char *lcs = traceback_pair(seqs->sequences[0], seqs->sequences[1], scores);
     printf("%s\n", lcs);
 }
 
 /* Build the DP scores table of common-suffix lengths for seq1 and seq2. */
-size_t **calc_lcs(const char *seq1, const char *seq2) {
+size_t **calc_lcs_pair(const char *seq1, const char *seq2) {
     size_t m = strlen(seq1);
     size_t n = strlen(seq2);
     size_t **scores = malloc((m + 1) * sizeof(size_t *));
@@ -43,7 +46,7 @@ size_t **calc_lcs(const char *seq1, const char *seq2) {
 }
 
 /* Recover the longest common substring from the DP scores table. */
-char *traceback(const char *seq1, const char *seq2, size_t **scores) {
+char *traceback_pair(const char *seq1, const char *seq2, size_t **scores) {
     size_t m = strlen(seq1);
     size_t n = strlen(seq2);
     index_t *index = argmax(m, n, scores);
@@ -67,26 +70,4 @@ char *traceback(const char *seq1, const char *seq2, size_t **scores) {
     free(index);
 
     return reverse(lcs);
-}
-
-/* Return the (i, j) index of the maximum value in array_2d (caller frees). */
-index_t *argmax(size_t m, size_t n, size_t **array_2d) {
-    index_t *index = malloc(sizeof(index_t));
-    if (!index) {
-        perror("malloc");
-        exit(1);
-    }
-    *index = (index_t){ 0, 0 };
-
-    size_t currmax = 0;
-    for (size_t i = 0; i <= m; i++) {
-        for (size_t j = 0; j <= n; j++) {
-            if (array_2d[i][j] >= currmax) {
-                currmax = array_2d[i][j];
-                index->i = i;
-                index->j = j;
-            }
-        }
-    }
-    return index;
 }
