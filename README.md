@@ -38,7 +38,7 @@ bin/rosalind <command> <input_data>
 - [x] HAMM
 - [x] GRPH
 - [x] CONS
-- [ ] LCSM
+- [x] LCSM
 - [ ] TREE
 - [ ] PROB
 - [ ] INOD
