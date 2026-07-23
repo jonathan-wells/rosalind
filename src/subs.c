@@ -4,14 +4,11 @@
 
 #include "../include/file_utils.h"
 #include "../include/subs.h"
+#include "../include/utils.h"
 
 size_t *find_substrings(const char *substring, const char *string) {
     size_t array_size = 1;
-    size_t *array = malloc(array_size * sizeof(size_t));
-    if (!array) {
-        perror("malloc");
-        exit(1);
-    }
+    size_t *array = xmalloc(array_size * sizeof(size_t));
 
     size_t m = strlen(substring);
     size_t n = strlen(string);
@@ -33,12 +30,7 @@ size_t *find_substrings(const char *substring, const char *string) {
             // First check if array capacity needs to grow
             if (j == array_size) {
                 array_size *= 2;
-                size_t *tmp_array = realloc(array, array_size * sizeof(size_t));
-                if (!tmp_array) {
-                    perror("realloc");
-                    exit(1);
-                }
-                array = tmp_array;
+                array = xrealloc(array, array_size * sizeof(size_t));
             }
 
             array[j] = i + 1;
@@ -49,12 +41,7 @@ size_t *find_substrings(const char *substring, const char *string) {
     }
 
     // Free excess array capacity
-    size_t *tmp_array = realloc(array, (array[0] + 1) * sizeof(size_t));
-    if (!tmp_array) {
-        perror("realloc");
-        exit(1);
-    }
-    array = tmp_array;
+    array = xrealloc(array, (array[0] + 1) * sizeof(size_t));
 
     return array;
 }

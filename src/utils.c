@@ -33,7 +33,7 @@ void *xrealloc(void *ptr, size_t size) {
 
 /* Return the (i, j) index of the maximum value in array_2d (caller frees). */
 index_t *argmax(size_t m, size_t n, size_t **array_2d) {
-    index_t *index = (index_t *)xmalloc(sizeof(index_t));
+    index_t *index = xmalloc(sizeof(index_t));
     *index = (index_t){0, 0};
 
     size_t currmax = 0;

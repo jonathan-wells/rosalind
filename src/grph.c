@@ -5,6 +5,7 @@
 
 #include "../include/file_utils.h"
 #include "../include/grph.h"
+#include "../include/utils.h"
 
 /**
  * @brief Checks for length k overlap between suffix of seq1 and prefix of seq2.
@@ -30,18 +31,10 @@ bool has_overlap(const char *seq1, const char *seq2, unsigned int k) {
 
 overlap_graph_t *calc_overlap_graph(fasta_t *fasta_seqs, unsigned int k) {
     size_t array_size = 1;
-    char ***array = malloc(array_size * sizeof(size_t));
-    if (!array) {
-        perror("malloc");
-        exit(1);
-    }
+    char ***array = xmalloc(array_size * sizeof(size_t));
 
-    overlap_graph_t *ograph = malloc(sizeof(overlap_graph_t));
+    overlap_graph_t *ograph = xmalloc(sizeof(overlap_graph_t));
     *ograph = (overlap_graph_t){.nedges = 0, .edges = array};
-    if (!ograph) {
-        perror("malloc");
-        exit(1);
-    }
 
     for (size_t i = 0; i < fasta_seqs->nseqs; i++) {
         for (size_t j = 0; j < fasta_seqs->nseqs; j++) {
@@ -56,20 +49,11 @@ overlap_graph_t *calc_overlap_graph(fasta_t *fasta_seqs, unsigned int k) {
 
             if (ograph->nedges == array_size) {
                 array_size *= 2;
-                char ***tmp_array =
-                    realloc(ograph->edges, array_size * sizeof(size_t));
-                if (!tmp_array) {
-                    perror("realloc");
-                    exit(1);
-                }
-                ograph->edges = tmp_array;
+                ograph->edges =
+                    xrealloc(ograph->edges, array_size * sizeof(size_t));
             }
 
-            char **edge = malloc(2 * sizeof(char *));
-            if (!edge) {
-                perror("malloc");
-                exit(1);
-            }
+            char **edge = xmalloc(2 * sizeof(char *));
             edge[0] = fasta_seqs->headers[i];
             edge[1] = fasta_seqs->headers[j];
             ograph->edges[ograph->nedges] = edge;

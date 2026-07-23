@@ -4,6 +4,7 @@
 
 #include "../include/file_utils.h"
 #include "../include/prot.h"
+#include "../include/utils.h"
 
 static const codontable_t CODONS[64] = {
     {"UUU", "F"}, {"CUU", "L"}, {"AUU", "I"}, {"GUU", "V"}, {"UUC", "F"},
@@ -30,7 +31,7 @@ void prot(const char *filename) {
 
 char *translate(const char *sequence) {
     size_t seqlen = strlen(sequence);
-    char *protseq = calloc(seqlen / 3 + 1, 1);
+    char *protseq = xcalloc(seqlen / 3 + 1, 1);
     char codon[4];
     codon[3] = '\0';
     strncpy(codon, sequence, 3);

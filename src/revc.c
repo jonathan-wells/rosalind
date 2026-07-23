@@ -4,15 +4,11 @@
 
 #include "../include/file_utils.h"
 #include "../include/revc.h"
+#include "../include/utils.h"
 
 char *complement(const char *dna_string) {
     int seqlen = strlen(dna_string);
-    char *complement_string = malloc(seqlen + 1);
-
-    if (complement_string == NULL) {
-        perror("Failed to malloc complement_string");
-        exit(1);
-    }
+    char *complement_string = xmalloc(seqlen + 1);
 
     for (size_t i = 0; i < seqlen; i++) {
         const char base = dna_string[i];
@@ -41,12 +37,7 @@ char *complement(const char *dna_string) {
 
 char *reverse(const char *dna_string) {
     int seqlen = strlen(dna_string);
-    char *reverse_string = malloc(seqlen + 1);
-
-    if (reverse_string == NULL) {
-        perror("Failed to malloc reverse_string");
-        exit(1);
-    }
+    char *reverse_string = xmalloc(seqlen + 1);
 
     int j = seqlen - 1;
     for (size_t i = 0; i < seqlen; i++) {

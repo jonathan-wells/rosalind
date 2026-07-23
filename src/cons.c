@@ -4,6 +4,7 @@
 
 #include "../include/cons.h"
 #include "../include/file_utils.h"
+#include "../include/utils.h"
 
 void cons(const char *filename) {
     fasta_t *seqs = read_fasta(filename);
@@ -29,17 +30,9 @@ void cons(const char *filename) {
 profile_t *build_profile(fasta_t *seqs) {
     size_t seqlen = strlen(seqs->sequences[0]);
 
-    size_t **matrix = malloc(seqlen * sizeof(size_t *));
-    if (!matrix) {
-        perror("malloc");
-        exit(1);
-    }
+    size_t **matrix = xmalloc(seqlen * sizeof(size_t *));
     for (size_t j = 0; j < seqlen; j++) {
-        matrix[j] = calloc(4, sizeof(size_t));
-        if (!matrix[j]) {
-            perror("calloc");
-            exit(1);
-        }
+        matrix[j] = xcalloc(4, sizeof(size_t));
     }
 
     char *bases = "ACGT\0";
@@ -53,11 +46,7 @@ profile_t *build_profile(fasta_t *seqs) {
         }
     }
 
-    profile_t *profile = malloc(sizeof(profile_t));
-    if (!profile) {
-        perror("malloc");
-        exit(1);
-    }
+    profile_t *profile = xmalloc(sizeof(profile_t));
     *profile = (profile_t){seqlen, matrix};
     return profile;
 }
@@ -78,11 +67,7 @@ size_t topbase(size_t *array) {
 }
 
 char *build_consensus(profile_t *profile) {
-    char *consensus_sequence = calloc(profile->seqlen + 1, 1);
-    if (!consensus_sequence) {
-        perror("calloc");
-        exit(1);
-    }
+    char *consensus_sequence = xcalloc(profile->seqlen + 1, 1);
 
     for (size_t i = 0; i < profile->seqlen; i++) {
         consensus_sequence[i] = topbase(profile->matrix[i]);

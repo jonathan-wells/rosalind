@@ -4,15 +4,11 @@
 
 #include "../include/file_utils.h"
 #include "../include/rna.h"
+#include "../include/utils.h"
 
 char *transcribe(const char *dna_string) {
     size_t seqlen = strlen(dna_string);
-    char *rna_string = malloc(seqlen + 1);
-
-    if (rna_string == NULL) {
-        perror("Failed to malloc rna_string");
-        exit(1);
-    }
+    char *rna_string = xmalloc(seqlen + 1);
 
     for (size_t i = 0; i < seqlen; i++) {
         char base = dna_string[i];

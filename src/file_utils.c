@@ -4,6 +4,7 @@
 #include <sys/stat.h>
 
 #include "../include/file_utils.h"
+#include "../include/utils.h"
 
 fasta_t *read_fasta(const char *filename) {
     FILE *fptr = fopen(filename, "r");
@@ -14,18 +15,10 @@ fasta_t *read_fasta(const char *filename) {
 
     // Following block allocates new memory for fasta data
     size_t nseqs_cap = 2;
-    char **seq_ptrs = malloc(nseqs_cap * sizeof(char *));
-    if (!seq_ptrs) {
-        perror("malloc");
-        exit(1);
-    }
-    char **hdr_ptrs = malloc(nseqs_cap * sizeof(char *));
-    if (!hdr_ptrs) {
-        perror("malloc");
-        exit(1);
-    }
+    char **seq_ptrs = xmalloc(nseqs_cap * sizeof(char *));
+    char **hdr_ptrs = xmalloc(nseqs_cap * sizeof(char *));
 
-    fasta_t *fasta_seqs = malloc(sizeof(fasta_t));
+    fasta_t *fasta_seqs = xmalloc(sizeof(fasta_t));
     *fasta_seqs =
         (fasta_t){.nseqs = 0, .headers = hdr_ptrs, .sequences = seq_ptrs};
 
@@ -48,21 +41,10 @@ fasta_t *read_fasta(const char *filename) {
 
             if (fasta_seqs->nseqs >= nseqs_cap) {
                 nseqs_cap *= 2;
-                char **hdr_tmp =
-                    realloc(fasta_seqs->headers, nseqs_cap * sizeof(char *));
-                if (!hdr_tmp) {
-                    perror("realloc");
-                    exit(1);
-                }
-                fasta_seqs->headers = hdr_tmp;
-
-                char **seq_tmp =
-                    realloc(fasta_seqs->sequences, nseqs_cap * sizeof(char *));
-                if (!seq_tmp) {
-                    perror("realloc");
-                    exit(1);
-                }
-                fasta_seqs->sequences = seq_tmp;
+                fasta_seqs->headers =
+                    xrealloc(fasta_seqs->headers, nseqs_cap * sizeof(char *));
+                fasta_seqs->sequences =
+                    xrealloc(fasta_seqs->sequences, nseqs_cap * sizeof(char *));
             }
 
             // Reset sequence buffer at each new header
@@ -74,20 +56,11 @@ fasta_t *read_fasta(const char *filename) {
             line[line_len - 1] = '\0';
             if (nseq_lines == 1) {
                 total_length = line_len;
-                seq_buffer = malloc(total_length);
-                if (!seq_buffer) {
-                    perror("malloc");
-                    exit(1);
-                }
+                seq_buffer = xmalloc(total_length);
                 strcpy(seq_buffer, line);
             } else {
                 total_length += line_len;
-                char *line_tmp = realloc(seq_buffer, total_length);
-                if (!line_tmp) {
-                    perror("realloc");
-                    exit(1);
-                }
-                seq_buffer = line_tmp;
+                seq_buffer = xrealloc(seq_buffer, total_length);
                 strcat(seq_buffer, line);
             }
 
@@ -107,11 +80,7 @@ char *read_single_line_input(const char *filename) {
     stat(filename, &st);
     size_t fsize = st.st_size;
 
-    char *buffer = malloc(fsize);
-    if (!buffer) {
-        perror("malloc");
-        exit(1);
-    }
+    char *buffer = xmalloc(fsize);
 
     FILE *fptr = fopen(filename, "r");
     if (!fptr) {
@@ -138,11 +107,7 @@ char **read_multi_line_input(const char *filename) {
     }
 
     size_t capacity = 1;
-    char **line_ptrs = malloc(capacity * sizeof(char *));
-    if (!line_ptrs) {
-        perror("malloc");
-        exit(1);
-    }
+    char **line_ptrs = xmalloc(capacity * sizeof(char *));
 
     char *line = NULL;
     size_t _lcap;
@@ -152,12 +117,7 @@ char **read_multi_line_input(const char *filename) {
     while ((line_len = getline(&line, &_lcap, fptr)) != -1) {
         if (idx >= capacity) {
             capacity *= 2;
-            char **tmp_ptrs = realloc(line_ptrs, capacity * sizeof(char *));
-            if (!tmp_ptrs) {
-                perror("realloc");
-                exit(1);
-            }
-            line_ptrs = tmp_ptrs;
+            line_ptrs = xrealloc(line_ptrs, capacity * sizeof(char *));
         }
         line[line_len - 1] = '\0';
         line_ptrs[idx] = strdup(line);

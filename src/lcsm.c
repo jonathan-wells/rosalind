@@ -41,7 +41,7 @@ char **_substrings_helper(
 
     size_t i = seqlen;
     while (i >= 1) {
-        char *sub = malloc(seqlen + 1);
+        char *sub = xmalloc(seqlen + 1);
         strcpy(sub, seq);
         sub[i] = '\0';
         substrings[substrings_idx] = sub;
@@ -56,11 +56,7 @@ char **generate_substrings(const char *seq) {
     size_t n = strlen(seq);
     size_t nsubstrings = (n * (n + 1)) / 2;
 
-    char **substrings = malloc(nsubstrings * sizeof(char *));
-    if (!substrings) {
-        perror("malloc");
-        exit(1);
-    }
+    char **substrings = xmalloc(nsubstrings * sizeof(char *));
 
     _substrings_helper(seq, substrings, n, 0);
     qsort(substrings, nsubstrings, sizeof(char *), compare_strlen);
@@ -82,17 +78,9 @@ void lcsm_pair(const char *filename) {
 size_t **calc_lcs_pair(const char *seq1, const char *seq2) {
     size_t m = strlen(seq1);
     size_t n = strlen(seq2);
-    size_t **scores = malloc((m + 1) * sizeof(size_t *));
-    if (!scores) {
-        perror("malloc");
-        exit(1);
-    }
+    size_t **scores = xmalloc((m + 1) * sizeof(size_t *));
     for (size_t i = 0; i <= m; i++) {
-        scores[i] = calloc(n + 1, sizeof(size_t));
-        if (!scores[i]) {
-            perror("calloc");
-            exit(1);
-        }
+        scores[i] = xcalloc(n + 1, sizeof(size_t));
     }
 
     for (size_t i = 1; i <= m; i++) {
@@ -116,11 +104,7 @@ char *traceback_pair(const char *seq1, const char *seq2, size_t **scores) {
     size_t j = index->j;
     size_t lcs_len = scores[i][j];
 
-    char *lcs = calloc(lcs_len + 1, 1);
-    if (!lcs) {
-        perror("calloc");
-        exit(1);
-    }
+    char *lcs = xcalloc(lcs_len + 1, 1);
 
     while (scores[i][j] != 0) {
         lcs[lcs_len - 1] = seq1[i - 1];
