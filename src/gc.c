@@ -4,8 +4,8 @@
 #include "gc.h"
 
 float calc_gc_content(char *sequence) {
-    unsigned int seqlen = strlen(sequence);
-    unsigned int gc_count = 0;
+    size_t seqlen = strlen(sequence);
+    size_t gc_count = 0;
 
     char *curr_base = sequence;
     while (*curr_base != '\0') {

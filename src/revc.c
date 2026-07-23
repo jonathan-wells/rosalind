@@ -7,7 +7,7 @@
 #include "utils.h"
 
 char *complement(const char *dna_string) {
-    int seqlen = strlen(dna_string);
+    size_t seqlen = strlen(dna_string);
     char *complement_string = xmalloc(seqlen + 1);
 
     for (size_t i = 0; i < seqlen; i++) {
@@ -36,10 +36,10 @@ char *complement(const char *dna_string) {
 }
 
 char *reverse(const char *dna_string) {
-    int seqlen = strlen(dna_string);
+    size_t seqlen = strlen(dna_string);
     char *reverse_string = xmalloc(seqlen + 1);
 
-    int j = seqlen - 1;
+    size_t j = seqlen - 1;
     for (size_t i = 0; i < seqlen; i++) {
         reverse_string[i] = dna_string[j];
         j--;

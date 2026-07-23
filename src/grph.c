@@ -17,19 +17,19 @@
  * @param seq2 The sequence from which prefixes will be compared.
  * @param k The length of suffixes and prefixes.
  */
-bool has_overlap(const char *seq1, const char *seq2, unsigned int k) {
+bool has_overlap(const char *seq1, const char *seq2, size_t k) {
     if (strcmp(seq1, seq2) == 0) {
         return 0;
     }
     size_t m = strlen(seq1);
     const char *sfx = seq1 + m - k;
     if (strncmp(sfx, seq2, k) == 0) {
-        return 1;
+        return true;
     }
-    return 0;
+    return false;
 }
 
-overlap_graph_t *calc_overlap_graph(fasta_t *fasta_seqs, unsigned int k) {
+overlap_graph_t *calc_overlap_graph(fasta_t *fasta_seqs, size_t k) {
     size_t array_size = 1;
     char ***array = xmalloc(array_size * sizeof(size_t));
 

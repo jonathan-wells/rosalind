@@ -12,7 +12,7 @@ void cons(const char *filename) {
     char *consensus = build_consensus(profile);
     printf("%s\n", consensus);
 
-    char *bases = "ACGT\0";
+    char *bases = "ACGT";
     for (size_t i = 0; i < 4; i++) {
         printf("%c: ", bases[i]);
         for (size_t j = 0; j < profile->seqlen; j++) {
@@ -35,7 +35,7 @@ profile_t *build_profile(fasta_t *seqs) {
         matrix[j] = xcalloc(4, sizeof(size_t));
     }
 
-    char *bases = "ACGT\0";
+    char *bases = "ACGT";
     for (size_t j = 0; j < seqlen; j++) {
         for (size_t i = 0; i < seqs->nseqs; i++) {
             for (size_t k = 0; k < 4; k++) {
@@ -52,11 +52,11 @@ profile_t *build_profile(fasta_t *seqs) {
 }
 
 size_t topbase(size_t *array) {
-    char *bases = "ACGT\0";
+    char *bases = "ACGT";
     size_t curr_max = 0;
     size_t i_max = 0;
 
-    for (int i = 0; i < 4; i++) {
+    for (size_t i = 0; i < 4; i++) {
         if (array[i] > curr_max) {
             curr_max = array[i];
             i_max = i;
