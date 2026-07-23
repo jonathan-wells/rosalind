@@ -6,6 +6,67 @@
 #include "../include/utils.h"
 #include "../include/lcsm.h"
 #include "../include/revc.h"
+#include "../include/grph.h"
+
+void lcsm(const char *filename) {
+    fasta_t *seqs = read_fasta(filename);
+    char **subs = generate_substrings(seqs->sequences[0]);
+
+    size_t n = strlen(seqs->sequences[0]);
+    size_t nsubs = (n * (n + 1)) / 2;
+
+    for (size_t i = 0; i < nsubs; i++) {
+        size_t count = 0;
+        for (size_t j = 0; j < seqs->nseqs; j++) {
+            if (strstr(seqs->sequences[j], subs[i]) != NULL) {
+                count++;
+            }
+        }
+        if (count == seqs->nseqs) {
+            printf("%s\n", subs[i]);
+            exit(0);
+        }
+    }
+}
+
+char **_substrings_helper(
+    const char *seq,
+    char **substrings,
+    size_t seqlen,
+    size_t substrings_idx
+) {
+    if (seq[0] == '\0') {
+        return substrings;
+    }
+
+    size_t i = seqlen;
+    while (i >= 1) {
+        char *sub = malloc(seqlen + 1);
+        strcpy(sub, seq);
+        sub[i] = '\0';
+        substrings[substrings_idx] = sub;
+        i--;
+        substrings_idx++;
+    }
+
+    return _substrings_helper( ++seq, substrings, --seqlen, substrings_idx);
+}
+
+char **generate_substrings(const char *seq) {
+    size_t n = strlen(seq);
+    size_t nsubstrings = (n * (n + 1)) / 2;
+
+    char **substrings = malloc(nsubstrings * sizeof(char *));
+    if (!substrings) {
+        perror("malloc");
+        exit(1);
+    }
+
+    _substrings_helper(seq, substrings, n, 0);
+    qsort(substrings, nsubstrings, sizeof(char *), compare_strlen);
+    return substrings;
+}
+
 
 /* Read two FASTA sequences and print their longest common substring.
  * Including this because I misread the problem and spent 30 mins solving the

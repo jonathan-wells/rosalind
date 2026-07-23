@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "utils.h"
 
@@ -23,4 +24,10 @@ index_t *argmax(size_t m, size_t n, size_t **array_2d) {
         }
     }
     return index;
+}
+
+int compare_strlen(const void * a, const void * b) {
+    const char *sa = *(char **)a;
+    const char *sb = *(char **)b;
+    return (int)strlen(sb) - (int)strlen(sa);
 }

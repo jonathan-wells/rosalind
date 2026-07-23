@@ -11,6 +11,7 @@ declare -a puzzles=(
     hamm
     grph
     cons
+    lcsm
 )
 for p in ${puzzles[@]}; do
     diffline=$(

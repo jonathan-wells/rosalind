@@ -23,6 +23,7 @@ sources = files(
   'src/revc.c',
   'src/rna.c',
   'src/subs.c',
+  'src/utils.c',
 )
 
 exe = executable(
