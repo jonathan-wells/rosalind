@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../include/fib.h"
-#include "../include/file_utils.h"
+#include "fib.h"
+#include "file_utils.h"
 
 size_t fibonacci_rabbits_recursive(size_t n, size_t k) {
     if (n <= 0) {

@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../include/file_utils.h"
-#include "../include/revc.h"
-#include "../include/utils.h"
+#include "file_utils.h"
+#include "revc.h"
+#include "utils.h"
 
 char *complement(const char *dna_string) {
     int seqlen = strlen(dna_string);

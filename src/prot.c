@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../include/file_utils.h"
-#include "../include/prot.h"
-#include "../include/utils.h"
+#include "file_utils.h"
+#include "prot.h"
+#include "utils.h"
 
 static const codontable_t CODONS[64] = {
     {"UUU", "F"}, {"CUU", "L"}, {"AUU", "I"}, {"GUU", "V"}, {"UUC", "F"},

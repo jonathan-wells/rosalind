@@ -2,11 +2,11 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../include/file_utils.h"
-#include "../include/utils.h"
-#include "../include/lcsm.h"
-#include "../include/revc.h"
-#include "../include/grph.h"
+#include "file_utils.h"
+#include "utils.h"
+#include "lcsm.h"
+#include "revc.h"
+#include "grph.h"
 
 void lcsm(const char *filename) {
     fasta_t *seqs = read_fasta(filename);

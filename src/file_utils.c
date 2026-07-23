@@ -3,8 +3,8 @@
 #include <string.h>
 #include <sys/stat.h>
 
-#include "../include/file_utils.h"
-#include "../include/utils.h"
+#include "file_utils.h"
+#include "utils.h"
 
 fasta_t *read_fasta(const char *filename) {
     FILE *fptr = fopen(filename, "r");

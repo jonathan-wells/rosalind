@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../include/file_utils.h"
-#include "../include/subs.h"
-#include "../include/utils.h"
+#include "file_utils.h"
+#include "subs.h"
+#include "utils.h"
 
 size_t *find_substrings(const char *substring, const char *string) {
     size_t array_size = 1;

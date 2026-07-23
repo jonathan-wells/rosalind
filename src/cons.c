@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../include/cons.h"
-#include "../include/file_utils.h"
-#include "../include/utils.h"
+#include "cons.h"
+#include "file_utils.h"
+#include "utils.h"
 
 void cons(const char *filename) {
     fasta_t *seqs = read_fasta(filename);

@@ -3,9 +3,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../include/file_utils.h"
-#include "../include/grph.h"
-#include "../include/utils.h"
+#include "file_utils.h"
+#include "grph.h"
+#include "utils.h"
 
 /**
  * @brief Checks for length k overlap between suffix of seq1 and prefix of seq2.

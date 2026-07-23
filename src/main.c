@@ -1,18 +1,18 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../include/cons.h"
-#include "../include/dna.h"
-#include "../include/fib.h"
-#include "../include/gc.h"
-#include "../include/grph.h"
-#include "../include/hamm.h"
-#include "../include/iprb.h"
-#include "../include/lcsm.h"
-#include "../include/prot.h"
-#include "../include/revc.h"
-#include "../include/rna.h"
-#include "../include/subs.h"
+#include "cons.h"
+#include "dna.h"
+#include "fib.h"
+#include "gc.h"
+#include "grph.h"
+#include "hamm.h"
+#include "iprb.h"
+#include "lcsm.h"
+#include "prot.h"
+#include "revc.h"
+#include "rna.h"
+#include "subs.h"
 
 typedef struct {
     const char *puzzle;

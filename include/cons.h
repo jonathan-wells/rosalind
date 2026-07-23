@@ -2,7 +2,7 @@
 
 #include <stdlib.h>
 
-#include "../include/file_utils.h"
+#include "file_utils.h"
 
 typedef struct {
     size_t seqlen;

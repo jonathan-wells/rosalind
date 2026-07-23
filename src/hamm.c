@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../include/file_utils.h"
-#include "../include/hamm.h"
+#include "file_utils.h"
+#include "hamm.h"
 
 void hamm(const char *filename) {
     char **seqs = read_multi_line_input(filename);
